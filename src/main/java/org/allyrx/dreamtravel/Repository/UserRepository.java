@@ -1,0 +1,7 @@
+package org.allyrx.dreamtravel.Repository;
+
+import org.allyrx.dreamtravel.Entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+}
