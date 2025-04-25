@@ -19,7 +19,7 @@ Une API RESTful développée avec Spring Boot permettant aux utilisateurs de gé
 
 ## 🧰 Technologies utilisées
 
-- Java 17
+- Java 21
 - Spring Boot
 - Spring Web
 - Spring Security (JWT)
