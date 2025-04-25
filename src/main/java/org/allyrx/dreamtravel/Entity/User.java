@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.allyrx.dreamtravel.Enum.EnumUser;
 
 @Entity
+@Table(name = "users")
 @Data @AllArgsConstructor @NoArgsConstructor
 public class User {
 
