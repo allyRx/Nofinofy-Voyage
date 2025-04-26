@@ -1,7 +1,6 @@
 package org.allyrx.dreamtravel.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.allyrx.dreamtravel.Enum.EnumRating;
 

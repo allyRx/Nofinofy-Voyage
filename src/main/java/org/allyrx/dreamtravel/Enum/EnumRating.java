@@ -8,7 +8,10 @@ public enum EnumRating {
     FOUR(4),
     FIVE(5);
 
+    private final int i;
+
     EnumRating(int i) {
+        this.i = i;
     }
 
 }
