@@ -1,6 +1,7 @@
 package org.allyrx.dreamtravel.Service;
 
 import lombok.AllArgsConstructor;
+import org.allyrx.dreamtravel.Entity.Places;
 import org.allyrx.dreamtravel.Entity.User;
 import org.allyrx.dreamtravel.Enum.EnumUser;
 import org.allyrx.dreamtravel.Repository.UserRepository;
@@ -47,5 +48,13 @@ public class UserService {
 
     public void deleteUserById(@PathVariable Integer id){
         userRepository.deleteById(Long.valueOf(id));
+    }
+
+    public User createOrGetPlace(User user){
+            User existingUser = userRepository.findByEmail(user.getEmail());
+            if (existingUser == null){
+                userRepository.save(user);
+            }
+            return existingUser;
     }
 }

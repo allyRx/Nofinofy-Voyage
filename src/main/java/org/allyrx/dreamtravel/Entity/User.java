@@ -1,14 +1,13 @@
 package org.allyrx.dreamtravel.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.allyrx.dreamtravel.Enum.EnumUser;
 
+@Getter @Setter
 @Entity
 @Table(name = "users")
-@Data @AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
