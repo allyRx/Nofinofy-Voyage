@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.allyrx.dreamtravel.Entity.Places;
 import org.allyrx.dreamtravel.Entity.User;
 import org.allyrx.dreamtravel.Repository.PlacesRepository;
-import org.allyrx.dreamtravel.Repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
