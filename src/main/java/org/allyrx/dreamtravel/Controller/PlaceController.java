@@ -45,17 +45,18 @@ public class PlaceController {
     }
 
     @GetMapping(path = "{id}")
-    public Optional<Places> getPlaceById(@PathVariable String id){
-        return Optional.empty();
+    public Optional<Places> getPlaceById(@PathVariable Long id){
+        return  placesService.getPlaceById(id);
     }
 
     @PutMapping(path = "{id}")
-    public ResponseEntity<String> updatePlace(@PathVariable String id, @RequestBody Places place){
-        return null;
+    public ResponseEntity<String> updatePlace(@PathVariable Long id, @RequestBody Places place) throws Exception{
+
+        return  placesService.updatePlace(id , place);
     }
 
     @DeleteMapping(path = "{id}")
-    public ResponseEntity<String> deletePlace(@PathVariable String id){
-        return null;
+    public ResponseEntity<String> deletePlace(@PathVariable Long id){
+        return placesService.deletePlace(id);
     }
 }

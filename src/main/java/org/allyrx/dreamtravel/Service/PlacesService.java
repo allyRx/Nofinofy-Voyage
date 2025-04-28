@@ -1,9 +1,12 @@
 package org.allyrx.dreamtravel.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.allyrx.dreamtravel.Entity.Places;
 import org.allyrx.dreamtravel.Entity.User;
 import org.allyrx.dreamtravel.Repository.PlacesRepository;
+import org.allyrx.dreamtravel.Repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,7 @@ import java.util.Optional;
 @Service @AllArgsConstructor
 public class PlacesService {
 
+    private final UserRepository userRepository;
     private PlacesRepository placesRepository;
     private UserService userService;
     public void addPlaces(Places places) throws Exception {
@@ -26,18 +30,30 @@ public class PlacesService {
         return placesRepository.findAll();
     }
 
-    public Optional<Places> getPlaceById(String id){
-        return Optional.empty();
+    public Optional<Places> getPlaceById(Long id){
+        return  placesRepository.findById(id);
     }
 
 
-    public ResponseEntity<String> updatePlace(String id,Places place){
-        return null;
+    public ResponseEntity<String> updatePlace(Long id,Places place) throws Exception {
+      Optional<Places> searchPlace = placesRepository.findById(id);
+
+      if(searchPlace.isPresent()){
+          Places newPlace = searchPlace.get(); //on recupere notre donnes existant pour remplacer celui du nouveau
+          newPlace.setUser(place.getUser());
+          newPlace.setName(place.getName());
+          newPlace.setCity(place.getCity());
+          newPlace.setCountry(place.getCountry());
+          placesRepository.save(newPlace);
+          return ResponseEntity.status(HttpStatus.OK).body("Successfully updated");
+      }else throw new Exception("Il y a une Erreur");
+
     }
 
 
-    public ResponseEntity<String> deletePlace(String id){
-        return null;
+    public ResponseEntity<String> deletePlace(Long id){
+        placesRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Successfully deleted");
     }
 
 
