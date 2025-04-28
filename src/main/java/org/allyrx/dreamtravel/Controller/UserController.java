@@ -20,7 +20,6 @@ public class UserController {
     //Injection du service
     private final UserService userService;
 
-
     @PostMapping(consumes = APPLICATION_JSON_VALUE , produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<String> adduser(@RequestBody User user){
 

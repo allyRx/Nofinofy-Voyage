@@ -2,8 +2,9 @@ package org.allyrx.dreamtravel.Controller;
 
 import lombok.AllArgsConstructor;
 import org.allyrx.dreamtravel.Entity.Places;
-import org.allyrx.dreamtravel.Repository.PlacesRepository;
+import org.allyrx.dreamtravel.Entity.User;
 import org.allyrx.dreamtravel.Service.PlacesService;
+import org.allyrx.dreamtravel.Service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +18,15 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/places") @AllArgsConstructor
 public class PlaceController {
     private PlacesService placesService;
-
+    private UserService userService;
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> addPlaces(Places places){
+    public ResponseEntity<String> addPlaces(@RequestBody Places places){
        try{
+           User existingUser = userService.FindPlaceWithEmail(places.getUser());
+           places.setUser(existingUser);
+           if (existingUser == null) {
+                throw new Exception("User not found");
+           }
            placesService.addPlaces(places);
            return ResponseEntity
                    .status(HttpStatus.CREATED)
@@ -35,7 +41,7 @@ public class PlaceController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<Places> displayPlaces(){
-        return List.of();
+        return placesService.displayPlaces();
     }
 
     @GetMapping(path = "{id}")

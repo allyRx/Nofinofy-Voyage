@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.allyrx.dreamtravel.Enum.EnumRating;
-
-import java.time.LocalDateTime;
-
 import static jakarta.persistence.CascadeType.MERGE;
 import static jakarta.persistence.CascadeType.PERSIST;
 
@@ -18,14 +15,13 @@ import static jakarta.persistence.CascadeType.PERSIST;
 public class Places {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
-    private String Name;
+    private String name;
     private String country;
     private String city;
-    private Integer note;
+    private String note;
     private boolean visited;
     private EnumRating rating;
     @ManyToOne(cascade = {PERSIST, MERGE})
     @JoinColumn(name = "user_id")
     private User user;
-    private LocalDateTime createdAt = LocalDateTime.now();
 }

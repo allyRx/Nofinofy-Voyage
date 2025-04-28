@@ -4,12 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.allyrx.dreamtravel.Enum.EnumUser;
 
-@Getter @Setter
 @Entity
 @Table(name = "users")
-@AllArgsConstructor @NoArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class User {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
@@ -17,5 +15,4 @@ public class User {
     @Column(unique = true)
     private String email;
     private EnumUser role;
-
 }

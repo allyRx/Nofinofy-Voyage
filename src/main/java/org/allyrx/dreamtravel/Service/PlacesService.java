@@ -15,15 +15,15 @@ public class PlacesService {
 
     private PlacesRepository placesRepository;
     private UserService userService;
-    public void addPlaces(Places places){
-         User userinfo = userService.createOrGetPlace(places.getUser());
+    public void addPlaces(Places places) throws Exception {
+         User userinfo = userService.FindPlaceWithEmail(places.getUser());
          places.setUser(userinfo);
-         places.setVisited(false);
+        // places.setVisited(false);
          placesRepository.save(places);
     }
 
     public List<Places> displayPlaces(){
-        return List.of();
+        return placesRepository.findAll();
     }
 
     public Optional<Places> getPlaceById(String id){

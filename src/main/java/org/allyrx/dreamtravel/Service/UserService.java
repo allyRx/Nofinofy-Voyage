@@ -50,11 +50,11 @@ public class UserService {
         userRepository.deleteById(Long.valueOf(id));
     }
 
-    public User createOrGetPlace(User user){
-            User existingUser = userRepository.findByEmail(user.getEmail());
-            if (existingUser == null){
-                userRepository.save(user);
-            }
-            return existingUser;
+    public User FindPlaceWithEmail(User user) throws Exception {
+        User userFound = userRepository.findByEmail(user.getEmail());
+        if(userFound == null){
+            throw new Exception("User not found");
+        }
+        return userFound;
     }
 }
