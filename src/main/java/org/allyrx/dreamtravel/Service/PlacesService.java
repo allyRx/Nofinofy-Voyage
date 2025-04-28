@@ -1,7 +1,6 @@
 package org.allyrx.dreamtravel.Service;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
 import org.allyrx.dreamtravel.Entity.Places;
 import org.allyrx.dreamtravel.Entity.User;
 import org.allyrx.dreamtravel.Repository.PlacesRepository;
@@ -16,7 +15,6 @@ import java.util.Optional;
 @Service @AllArgsConstructor
 public class PlacesService {
 
-    private final UserRepository userRepository;
     private PlacesRepository placesRepository;
     private UserService userService;
     public void addPlaces(Places places) throws Exception {
