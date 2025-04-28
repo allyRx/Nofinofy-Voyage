@@ -1,6 +1,7 @@
 package org.allyrx.dreamtravel.Service;
 
 import lombok.AllArgsConstructor;
+import org.allyrx.dreamtravel.Entity.Places;
 import org.allyrx.dreamtravel.Entity.User;
 import org.allyrx.dreamtravel.Enum.EnumUser;
 import org.allyrx.dreamtravel.Repository.UserRepository;
@@ -47,5 +48,13 @@ public class UserService {
 
     public void deleteUserById(@PathVariable Integer id){
         userRepository.deleteById(Long.valueOf(id));
+    }
+
+    public User FindPlaceWithEmail(User user) throws Exception {
+        User userFound = userRepository.findByEmail(user.getEmail());
+        if(userFound == null){
+            throw new Exception("User not found");
+        }
+        return userFound;
     }
 }
